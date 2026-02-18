@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Plus, Pencil, Trash2, Search, Store, Upload, X, Image as ImageIcon } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 const CLOUDINARY_CLOUD = 'dl2eo7viu';
 const CLOUDINARY_PRESET = 'brajstay-hotels';
 

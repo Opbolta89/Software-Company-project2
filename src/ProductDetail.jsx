@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Heart, ShoppingCart, Star, Truck, Shield, ArrowLeft, Share2, Ruler, CheckCircle, Sparkles, Loader, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const ProductDetail = () => {
         const allRes = await fetch(`${API_URL}/products`);
         const allProducts = await allRes.json();
         const related = allProducts
-          .filter(p => p.category === data.category && p.id !== data.id && p.store !== 'kisna')
+          .filter(p => p.category === data.category && p.id !== data.id)
           .slice(0, 4);
         setRelatedProducts(related);
       }

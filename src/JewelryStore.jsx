@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Star, Eye, Loader } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 const JewelryStore = ({ filter = 'all', searchQuery = '' }) => {
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ const JewelryStore = ({ filter = 'all', searchQuery = '' }) => {
       setLoading(true);
       const res = await fetch(`${API_URL}/products`);
       const data = await res.json();
-      // Only show Radharani products (not Kisna)
-      const radharaniProducts = data.filter(p => p.store !== 'kisna');
+      // Show only Radharani products (not Kisna)
+      const radharaniProducts = data.filter(p => !p.store || p.store !== 'kisna');
       setProducts(radharaniProducts);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -62,96 +62,69 @@ const JewelryStore = ({ filter = 'all', searchQuery = '' }) => {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-3">
-            Luxury Collection
-          </h2>
-          <p className="text-gray-600 tracking-wider text-sm">
-            {filteredItems.length} Exquisite Pieces
-          </p>
-        </div>
+        <h2 className="text-3xl md:text-4xl font-serif text-center text-gray-800 mb-4">
+          Our Collection
+        </h2>
+        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Discover our exquisite collection of handcrafted jewelry
+        </p>
 
         {filteredItems.length === 0 ? (
-          <div className="text-center py-16">
+          <div className="text-center py-20">
             <p className="text-gray-500 text-lg">No products found</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="group relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                <div
-                  className="relative overflow-hidden bg-gray-100 aspect-[3/4] cursor-pointer"
-                  onClick={() => navigate(`/product/${item.id}`)}
-                >
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
                   <img
-                    src={item.image || item.img}
-                    alt={item.name || item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src={item.image || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400'}
+                    alt={item.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      e.target.src = 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400';
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {item.tag && (
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-amber-500 text-white text-xs font-semibold tracking-wider rounded-sm shadow-lg">
-                      {item.tag}
-                    </div>
-                  )}
-
-                  <div className={`absolute top-4 right-4 flex flex-col gap-2 transition-all duration-500 ${
-                    hoveredId === item.id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-                  }`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                     <button
-                      onClick={(e) => { e.stopPropagation(); toggleFavorite(item.id); }}
-                      className="p-2 bg-white rounded-full shadow-lg hover:bg-amber-500 hover:text-white transition-all duration-300"
+                      onClick={() => toggleFavorite(item.id)}
+                      className={`p-2 rounded-full bg-white shadow-lg hover:bg-amber-50 transition-colors ${favorites.includes(item.id) ? 'text-red-500' : 'text-gray-600'}`}
                     >
-                      <Heart className={`w-5 h-5 ${favorites.includes(item.id) ? 'fill-red-500 text-red-500' : ''}`} />
+                      <Heart className={`w-5 h-5 ${favorites.includes(item.id) ? 'fill-current' : ''}`} />
                     </button>
-                    <button className="p-2 bg-white rounded-full shadow-lg hover:bg-amber-500 hover:text-white transition-all duration-300">
+                    <button
+                      onClick={() => navigate(`/product/${item.id}`)}
+                      className="p-2 rounded-full bg-white shadow-lg hover:bg-amber-50 text-gray-600 transition-colors"
+                    >
                       <Eye className="w-5 h-5" />
                     </button>
                   </div>
-
-                  <button
-                    onClick={(e) => { e.stopPropagation(); navigate(`/product/${item.id}`); }}
-                    className={`absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-black text-white flex items-center gap-2 rounded-sm transition-all duration-500 hover:bg-amber-500 ${
-                      hoveredId === item.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                    }`}
-                  >
-                    <Eye className="w-4 h-4" />
-                    <span className="text-sm font-medium tracking-wide">View Details</span>
-                  </button>
+                  {item.tag && (
+                    <div className="absolute top-3 left-3 px-3 py-1 bg-amber-600 text-white text-xs font-medium rounded-full">
+                      {item.tag}
+                    </div>
+                  )}
                 </div>
-
-                <div className="p-5">
-                  <div className="flex items-center gap-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${i < Math.floor(item.rating || 4) ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}`}
-                      />
-                    ))}
-                    <span className="text-xs text-gray-600 ml-1">({item.rating || 4.0})</span>
-                  </div>
-
-                  <h3
-                    onClick={() => navigate(`/product/${item.id}`)}
-                    className="font-semibold text-gray-800 text-base mb-2 group-hover:text-amber-600 transition-colors duration-300 cursor-pointer"
-                  >
-                    {item.name || item.title}
-                  </h3>
-
+                <div className="p-4">
+                  <h3 className="font-medium text-gray-800 mb-1 truncate">{item.name}</h3>
+                  <p className="text-sm text-gray-500 mb-2">{item.category}</p>
                   <div className="flex items-center justify-between">
-                    <p className="text-xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
+                    <span className="text-lg font-bold text-amber-700">
                       {formatPrice(item.price)}
-                    </p>
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      <span className="text-sm text-gray-600">4.5</span>
+                    </div>
                   </div>
                 </div>
-
-                <div className="h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </div>
             ))}
           </div>

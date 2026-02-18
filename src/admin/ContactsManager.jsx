@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Trash2 } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 export default function ContactsManager() {
   const [contacts, setContacts] = useState([]);

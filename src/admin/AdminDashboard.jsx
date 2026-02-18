@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Package, ShoppingCart, MessageSquare, TrendingUp } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({ products: 0, orders: 0, contacts: 0 });

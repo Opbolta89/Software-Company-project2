@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Heart, ShoppingCart, Star, Truck, Shield, ArrowLeft, Share2, Ruler, CheckCircle, Sparkles, Loader } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 const KisnaProductDetail = () => {
   const { id } = useParams();
