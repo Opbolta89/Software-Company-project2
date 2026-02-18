@@ -30,5 +30,21 @@
     "purity": "",
     "tag": "Premium",
     "store": "radharani"
+  },
+  {
+    "id": 1771409694066,
+    "name": "ee43",
+    "price": "343",
+    "category": "necklace",
+    "image": "https://res.cloudinary.com/dl2eo7viu/image/upload/v1771409677/erw1nw6zrycq0qggvmfj.jpg",
+    "images": [
+      "https://res.cloudinary.com/dl2eo7viu/image/upload/v1771409677/erw1nw6zrycq0qggvmfj.jpg"
+    ],
+    "description": "4rr",
+    "material": "22",
+    "weight": "22",
+    "purity": "",
+    "tag": "New",
+    "store": "radharani"
   }
 ]
