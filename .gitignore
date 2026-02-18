@@ -1,3 +1,6 @@
+# Environment variables
+.env
+
 # Logs
 logs
 *.log
@@ -12,6 +15,9 @@ dist
 dist-ssr
 *.local
 server/node_modules/
+
+# Environment variables
+.env
 
 # Editor directories and files
 .vscode/*
