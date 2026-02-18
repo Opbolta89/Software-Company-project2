@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import ImageSlider from './ImageSlider';
 import OurCollection from './OurCollection';
@@ -17,18 +17,24 @@ import ContactsManager from './admin/ContactsManager';
 import Login from './admin/Login';
 import ProtectedRoute from './admin/ProtectedRoute';
 
-function HomePage() {
+function HomePageContent() {
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search') || '';
 
   return (
     <>
       <ImageSlider />
       <OurCollection />
       <CategoryFilter onFilterChange={setSelectedFilter} />
-      <JewelryStore filter={selectedFilter} />
+      <JewelryStore filter={selectedFilter} searchQuery={searchQuery} />
       <FeaturedSection />
     </>
   );
+}
+
+function HomePage() {
+  return <HomePageContent />;
 }
 
 function App() {

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Gold Necklace",
+    "price": 25000,
+    "category": "Necklaces",
+    "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400",
+    "description": "Beautiful 22K gold necklace"
+  },
+  {
+    "id": 2,
+    "name": "Diamond Ring",
+    "price": 50000,
+    "category": "Rings",
+    "image": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400",
+    "description": "Elegant diamond ring"
+  },
+  {
+    "id": 3,
+    "name": "Pearl Earrings 555",
+    "price": 8000,
+    "category": "Earrings",
+    "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400",
+    "description": "Classic pearl earrings"
+  },
+  {
+    "id": 4,
+    "name": "Gold Bangle",
+    "price": 15000,
+    "category": "Bangles",
+    "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400",
+    "description": "Traditional gold bangle"
+  },
+  {
+    "id": 5,
+    "name": "Silver Anklet",
+    "price": 3000,
+    "category": "Anklets",
+    "image": "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400",
+    "description": "Sterling silver anklet"
+  },
+  {
+    "id": 1771392555240,
+    "name": "jeweley kisna ",
+    "price": "900",
+    "category": "all",
+    "image": "https://ISJSJ.COM",
+    "description": "hona chaiya "
+  }
+]

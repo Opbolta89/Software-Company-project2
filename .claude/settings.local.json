@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(npm run build)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev)",
+      "Bash(curl:*)",
+      "Bash(git reset:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
