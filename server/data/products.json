@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Gold Necklace",
+    "name": "Gold Necklace 5",
     "price": 25000,
     "category": "Necklaces",
     "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400",
@@ -43,8 +43,28 @@
     "id": 1771392555240,
     "name": "jeweley kisna ",
     "price": "900",
-    "category": "all",
+    "category": "Necklaces",
     "image": "https://ISJSJ.COM",
     "description": "hona chaiya "
+  },
+  {
+    "id": 1771401848738,
+    "name": "jewelryy software ",
+    "price": "89999",
+    "category": "rings",
+    "image": "https://www.google.com/imgres?q=jewelry%20image%20address&imgurl=https%3A%2F%2Fblog.southindiajewels.com%2Fwp-content%2Fuploads%2F2024%2F06%2FTraditional-Temple-Kumkum-Box-From-Aishi-Jewellery-6-576x1024.png&imgrefurl=https%3A%2F%2Fwww.storeex.in%2Faishi-jewellery-1-gram-gold-address-st31-243573.html&docid=gbTkTxmoA6Z-9M&tbnid=lr8IJ28j908H9M&vet=12ahUKEwiEq6CIyuKSAxWgR2wGHbFAHTQQnPAOegQIFxAB..i&w=576&h=1024&hcb=2&itg=1&ved=2ahUKEwiEq6CIyuKSAxWgR2wGHbFAHTQQnPAOegQIFxAB",
+    "description": "dhdhdhdhehdhe"
+  },
+  {
+    "id": 1771402505115,
+    "name": "braclets erp",
+    "price": "500",
+    "category": "bracelets",
+    "image": "https://www.google.com/imgres?q=jewelry%20image%20address&imgurl=https%3A%2F%2Fblog.southindiajewels.com%2Fwp-content%2Fuploads%2F2024%2F06%2FTraditional-Temple-Kumkum-Box-From-Aishi-Jewellery-6-576x1024.png&imgrefurl=https%3A%2F%2Fwww.storeex.in%2Faishi-jewellery-1-gram-gold-address-st31-243573.html&docid=gbTkTxmoA6Z-9M&tbnid=lr8IJ28j908H9M&vet=12ahUKEwiEq6CIyuKSAxWgR2wGHbFAHTQQnPAOegQIFxAB..i&w=576&h=1024&hcb=2&itg=1&ved=2ahUKEwiEq6CIyuKSAxWgR2wGHbFAHTQQnPAOegQIFxAB",
+    "description": "we will make it sonn as possible",
+    "material": "200",
+    "weight": "45gm",
+    "purity": "100",
+    "tag": "New"
   }
 ]

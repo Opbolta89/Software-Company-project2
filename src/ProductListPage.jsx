@@ -4,6 +4,18 @@ import { Heart, Star, Eye, ArrowLeft, SlidersHorizontal, Loader, Search } from '
 
 const API_URL = 'http://localhost:5000/api';
 
+const CATEGORIES = [
+  { id: 'all', label: 'All Jewelry', icon: '✨' },
+  { id: 'necklace', label: 'Necklaces', icon: '📿' },
+  { id: 'bracelets', label: 'Bracelets', icon: '⭕' },
+  { id: 'earring', label: 'Earrings', icon: '💎' },
+  { id: 'rings', label: 'Rings', icon: '💍' },
+  { id: 'anklets', label: 'Anklets', icon: '🦶' },
+  { id: 'pendants', label: 'Pendants', icon: '🔶' },
+  { id: 'bangles', label: 'Bangles', icon: '🔵' },
+  { id: 'mangalsutra', label: 'Mangalsutra', icon: '⚫' },
+];
+
 const ProductListPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -39,7 +51,6 @@ const ProductListPage = () => {
     }
   };
 
-  // Filter products based on category and search
   const filteredProducts = products.filter(item => {
     const matchesCategory = currentFilter === 'all' ||
       item.category?.toLowerCase() === currentFilter.toLowerCase();
@@ -49,7 +60,6 @@ const ProductListPage = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Sort products
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch(sortBy) {
       case 'price-low':
@@ -82,17 +92,14 @@ const ProductListPage = () => {
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(price);
   };
 
-  const categories = [
-    { id: 'all', label: 'All Jewelry', count: products.length },
-    { id: 'necklace', label: 'Necklaces', count: products.filter(p => p.category?.toLowerCase() === 'necklace').length },
-    { id: 'bracelets', label: 'Bracelets', count: products.filter(p => p.category?.toLowerCase() === 'bracelets').length },
-    { id: 'earring', label: 'Earrings', count: products.filter(p => p.category?.toLowerCase() === 'earring').length },
-    { id: 'rings', label: 'Rings', count: products.filter(p => p.category?.toLowerCase() === 'rings').length },
-  ];
+  const getCategoryCount = (catId) => {
+    if (catId === 'all') return products.length;
+    return products.filter(p => p.category?.toLowerCase() === catId.toLowerCase()).length;
+  };
 
   const getCategoryTitle = () => {
     if (searchParam) return `Search: "${searchParam}"`;
-    const category = categories.find(cat => cat.id === currentFilter);
+    const category = CATEGORIES.find(cat => cat.id === currentFilter);
     return category ? category.label : 'All Jewelry';
   };
 
@@ -155,7 +162,7 @@ const ProductListPage = () => {
               </h3>
 
               <div className="space-y-2">
-                {categories.map((cat) => (
+                {CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => {
@@ -168,13 +175,15 @@ const ProductListPage = () => {
                           : 'bg-gray-50 text-gray-700 hover:bg-amber-50 hover:text-amber-600'
                       }`}
                   >
-                    <span className="font-medium">{cat.label}</span>
+                    <span className="font-medium flex items-center gap-2">
+                      <span>{cat.icon}</span> {cat.label}
+                    </span>
                     <span className={`text-sm px-2 py-1 rounded ${
                       currentFilter === cat.id && !searchParam
                         ? 'bg-white/20'
                         : 'bg-gray-200 group-hover:bg-amber-100'
                     }`}>
-                      {cat.count}
+                      {getCategoryCount(cat.id)}
                     </span>
                   </button>
                 ))}
