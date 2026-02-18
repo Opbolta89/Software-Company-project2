@@ -20,7 +20,9 @@ const JewelryStore = ({ filter = 'all', searchQuery = '' }) => {
       setLoading(true);
       const res = await fetch(`${API_URL}/products`);
       const data = await res.json();
-      setProducts(data);
+      // Only show Radharani products (not Kisna)
+      const radharaniProducts = data.filter(p => p.store !== 'kisna');
+      setProducts(radharaniProducts);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import ImageSlider from './ImageSlider';
 import OurCollection from './OurCollection';
@@ -8,6 +8,8 @@ import JewelryStore from './JewelryStore';
 import FeaturedSection from './FeaturedSection';
 import ProductDetail from './ProductDetail';
 import ProductListPage from './ProductListPage';
+import KisnaStore from './KisnaStore';
+import KisnaProductDetail from './KisnaProductDetail';
 import Footer from './Footer';
 import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
@@ -19,15 +21,13 @@ import ProtectedRoute from './admin/ProtectedRoute';
 
 function HomePageContent() {
   const [selectedFilter, setSelectedFilter] = useState('all');
-  const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
 
   return (
     <>
       <ImageSlider />
       <OurCollection />
       <CategoryFilter onFilterChange={setSelectedFilter} />
-      <JewelryStore filter={selectedFilter} searchQuery={searchQuery} />
+      <JewelryStore filter={selectedFilter} />
       <FeaturedSection />
     </>
   );
@@ -46,6 +46,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductListPage />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/kisna" element={<KisnaStore />} />
+          <Route path="/kisna/product/:id" element={<KisnaProductDetail />} />
           <Route path="/admin/login" element={<Login />} />
           <Route
             path="/admin"
